@@ -16,9 +16,11 @@ class AreaViewController: MeasureViewController {
     fileprivate var currentLine: Line?
     fileprivate lazy var unit: DistanceUnit = .meter
     fileprivate lazy var lines: [Line] = []
+    fileprivate lazy var startNodes: [SCNNode]  = []
+    fileprivate lazy var endNodes: [SCNNode]  = []
     fileprivate lazy var startPoints : [SCNVector3] = []
     fileprivate lazy var endPoints : [SCNVector3] = []
-    
+    var lineObj: Line?
     var isMeasuring: Bool = false
     
     override func viewDidLoad() {
@@ -37,7 +39,7 @@ class AreaViewController: MeasureViewController {
         let pointLocation = view.convert(screenCenterPoint, to: sceneView)
         if let position: SCNVector3 = sceneView.hitResult(forPoint: pointLocation)  {
             let node = self.nodeWithPosition(position)
-            sceneView.scene.rootNode.addChildNode(node)
+            //sceneView.scene.rootNode.addChildNode(node)
                 
             if !isMeasuring {
                 isMeasuring = true
@@ -56,6 +58,20 @@ class AreaViewController: MeasureViewController {
         }
         
     }
+    
+    @IBAction func undoBtnTap(_ sender: UIButton){
+        if lines.count > 0 {
+            let lastLine = lines.last
+            lines.removeLast()
+            sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                if let lastLine = lastLine {
+                    lastLine.removeFromParentNode()
+                }
+            }
+        }
+
+    }
+    
     @IBAction func clearBtnTap(_ sender: UIButton) {
         sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
         node.removeFromParentNode() }
@@ -65,7 +81,6 @@ class AreaViewController: MeasureViewController {
         captureBtn.isEnabled = false
         captureBtn.isHighlighted = false
     }
-    
     
     @IBAction func capturePhotoBtnTap(_ sender: UIButton) {
         
@@ -95,9 +110,6 @@ class AreaViewController: MeasureViewController {
         present(alertVC, animated: true, completion: nil)
         
     }
-    
-    
-    
     
     fileprivate func detectObjects() {
         
@@ -154,3 +166,4 @@ extension UIViewController {
         })
     }
 }
+

@@ -86,15 +86,31 @@
                                             <action selector="unitBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sZS-Pu-8hr"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZZ-2V-uG2" userLabel="clearBtn">
+                                        <rect key="frame" x="313" y="72" width="60" height="60"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="TuK-mj-XTz"/>
+                                            <constraint firstAttribute="width" constant="60" id="rJl-Y5-ifp"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                        <state key="normal" image="arrowshape.turn.up.backward.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="undoBtnTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cfs-Jx-tZr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="WwD-Bp-YfF" secondAttribute="trailing" id="7lt-Z8-8GS"/>
                                     <constraint firstItem="WwD-Bp-YfF" firstAttribute="top" secondItem="BNX-RZ-c1i" secondAttribute="top" id="Gmc-Ea-x9B"/>
                                     <constraint firstItem="GKk-Ox-ZoJ" firstAttribute="centerY" secondItem="BNX-RZ-c1i" secondAttribute="centerY" id="IPQ-UW-N87"/>
+                                    <constraint firstAttribute="trailing" secondItem="3ZZ-2V-uG2" secondAttribute="trailing" constant="20" id="JO5-xn-llK"/>
                                     <constraint firstItem="d55-16-cOB" firstAttribute="leading" secondItem="BNX-RZ-c1i" secondAttribute="leading" constant="20" id="MqR-kN-93t"/>
                                     <constraint firstAttribute="trailing" secondItem="SpU-kQ-QpK" secondAttribute="trailing" constant="20" id="NdD-QU-X8p"/>
                                     <constraint firstItem="GKk-Ox-ZoJ" firstAttribute="centerX" secondItem="BNX-RZ-c1i" secondAttribute="centerX" id="WS2-lY-JoH"/>
+                                    <constraint firstItem="3ZZ-2V-uG2" firstAttribute="centerY" secondItem="d55-16-cOB" secondAttribute="centerY" id="g9n-w5-OAY"/>
                                     <constraint firstAttribute="bottom" secondItem="WwD-Bp-YfF" secondAttribute="bottom" id="lN1-0C-sIj"/>
                                     <constraint firstAttribute="bottom" secondItem="cwr-Rc-RfU" secondAttribute="bottom" constant="40" id="qdp-qv-jYm"/>
                                     <constraint firstItem="hhi-hY-L8t" firstAttribute="bottom" secondItem="WwD-Bp-YfF" secondAttribute="bottom" constant="-50" id="sL0-oi-xzG"/>
@@ -201,6 +217,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
         <image name="camera.circle.fill" catalog="system" width="128" height="123"/>
         <image name="circle.inset.filled" catalog="system" width="128" height="123"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
