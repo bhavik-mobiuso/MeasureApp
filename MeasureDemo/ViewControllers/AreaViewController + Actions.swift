@@ -30,35 +30,51 @@ extension AreaViewController {
                         
                         // check requiredLine (Number of angle + 1) is less then current number of line or not
                         
-                        
-                        if noOfLine == 1 {
-                            angleNodes.append(endValue)
-                            for i in angleNodes {
-                                print("\n",i)
+                        if noOfLine <= requiredLine {
+                            
+                            // if no of angle line is 1 then return its endvalue to endnode of anglenodes
+                            if !firstAngleCalculated && noOfAngleLine == 1 {
+                                
+                                // append lastnode of angleNode in angleNodes
+                                angleNodes.append(endValue)
+                    
+                                // append angleVectors into model angle array
+                                angles.append(AngleNode(lines: angleLines,angleText: angleTextodes.last,angleNodeValue: angleNodes))
+                                
+                                firstAngleCalculated = true
+                                angleNodes.removeAll()
+                                angleLines.removeAll()
+                                noOfLine = noOfLine + 1
+                                noOfAngleLine = 0
                             }
+                            else {
+                                // append lastnode of angleNode in angleNodes
+                                angleNodes.append(endValue)
+                    
+                                // append angleVectors into model angle array
+                                angles.append(AngleNode(lines: angleLines,angleText: angleTextodes.last,angleNodeValue: angleNodes))
+                                
+                                angleNodes.removeAll()
+                                angleLines.removeAll()
+                                noOfLine = noOfLine + 1
+                                noOfAngleLine = 0
+
+                            }
+                            noOfLine = noOfLine + 1
                         }
-                        noOfLine = noOfLine + 1
+                        else {
+                            isMeasuring = false
+                        }
+                        
                     }
                     else {
                         lines.append(line)
                     }
                     currentLine = nil
                 }
-                
+                isMeasuring = false
                 changeBtnMode(isEnabled: true)
                 startValue = SCNVector3()
-                
-                if angleMeasurement {
-                    if noOfLine > 1 {
-                        createAngleDistace()
-                        
-                    }else {
-                        isMeasuring = true
-                    }
-                }
-                else {
-                    isMeasuring = false
-                }
             }
     }
     

@@ -33,6 +33,7 @@ class AreaViewController: MeasureViewController {
     var angleNodes = [SCNVector3]()
     var noOfLine = 0
     var noOfAngleLine = 0
+    var firstAngleCalculated: Bool = false
     var angles = [AngleNode]()
     var requiredLine = 1
     var angleLines: [Line] = []
