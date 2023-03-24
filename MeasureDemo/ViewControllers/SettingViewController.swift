@@ -8,6 +8,12 @@
 import UIKit
 
 
+enum userSettings: String {
+    case unit
+    case isAngleMeasurement
+    case noOfAngle
+}
+
 protocol Setting: AnyObject {
     func settings(measurementUnit: DistanceUnit, isAngleMeasurement: Bool, noOfAngles: Int)
 }
@@ -30,6 +36,7 @@ class SettingViewController: UIViewController {
     var measureInUnit: DistanceUnit = .meter
     var enableAngle: Bool = false
     var noOfAngle: Int = 1
+    let userDefault = UserDefaults.standard
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +50,6 @@ extension SettingViewController {
         //centerview
         
         popupView.layer.cornerRadius = 10
-        
         
         // set button target
         
@@ -61,13 +67,9 @@ extension SettingViewController {
         
         unitPicker.delegate = self
         unitPicker.dataSource = self
-        setDefaultValue(item: measureInUnit, inComponent: 0)
         
         // MARK: - Angle measurements settings
         
-        angleEnable.isOn = enableAngle
-        buttonMode(value: enableAngle) // set plus minus button default value
-        noOfAngleLbl.text = "\(noOfAngle)"
         angleEnable.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
 
         plusAngleBtn.addTarget(self, action: #selector(plusAngleBtnTap), for: .touchUpInside)
@@ -75,7 +77,7 @@ extension SettingViewController {
         plusAngleBtn.layer.cornerRadius = 5
         minusAngleBtn.layer.cornerRadius = 5
      
-        
+        initiateSettings()
     }
 }
 
@@ -92,7 +94,8 @@ extension SettingViewController {
     }
     
     @objc func applyBtnTap() {
-        settigDelegate?.settings(measurementUnit: self.measureInUnit, isAngleMeasurement: self.enableAngle, noOfAngles: noOfAngle)
+
+        self.updateSettings()
         self.dismiss(animated: true)
     }
     
@@ -126,6 +129,8 @@ extension SettingViewController {
             noOfAngle -= 1
             DispatchQueue.main.async {
                 self.noOfAngleLbl.text = "\(self.noOfAngle)"
+                self.applyBtn.isEnabled = true
+                self.applyBtn.isHighlighted = false
             }
         }
     }
@@ -139,9 +144,41 @@ extension SettingViewController {
     }
     
     func setDefaultValue(item: DistanceUnit, inComponent: Int){
-     if let indexPosition = unitPickerData.firstIndex(of: item){
-       unitPicker.selectRow(indexPosition, inComponent: inComponent, animated: true)
-     }
+        if let indexPosition = unitPickerData.firstIndex(of: item){
+            unitPicker.selectRow(indexPosition, inComponent: inComponent, animated: true)
+        }
+    }
+    
+    func updateSettings() {
+        
+       self.userDefault.set(self.enableAngle, forKey: userSettings.isAngleMeasurement.rawValue)
+       self.userDefault.set(measureInUnit.unit, forKey: userSettings.unit.rawValue)
+       self.userDefault.set(self.noOfAngle, forKey: userSettings.noOfAngle.rawValue)
+        
+        
+       settigDelegate?.settings(measurementUnit: self.measureInUnit, isAngleMeasurement: self.enableAngle, noOfAngles: noOfAngle)
+        
+    }
+    
+    func initiateSettings() {
+        let units = userDefault.value(forKey: userSettings.unit.rawValue)
+        let isAngleMeasurement = userDefault.value(forKey: userSettings.isAngleMeasurement.rawValue)
+        
+        let noOfAngles = userDefault.value(forKey: userSettings.noOfAngle.rawValue)
+        
+        for unit in unitPickerData {
+            if unit.unit == units as! String {
+                setDefaultValue(item: unit, inComponent: 0)
+                self.measureInUnit = unit
+             
+            }
+        }
+        angleEnable.isOn = (isAngleMeasurement as! Bool)
+        buttonMode(value: (isAngleMeasurement as! Bool)) // set plus minus button default value
+        noOfAngleLbl.text = "\(noOfAngles as! Int)"
+        
+        self.enableAngle = isAngleMeasurement as! Bool
+        self.noOfAngle = noOfAngles as! Int
     }
 }
 
@@ -167,11 +204,12 @@ extension SettingViewController : UIPickerViewDelegate, UIPickerViewDataSource {
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
-            pickerLabel?.font = UIFont(name: "Helvetica", size: 12)
+            pickerLabel?.font = UIFont(name: "Helvetica", size: 14)
+            pickerLabel?.font = .boldSystemFont(ofSize: 14.0)
             pickerLabel?.textAlignment = .center
         }
         pickerLabel?.text = "\(unitPickerData[row])"
-        pickerLabel?.textColor = UIColor.blue
+        pickerLabel?.textColor = UIColor.systemBlue
 
         return pickerLabel!
     }

@@ -30,7 +30,6 @@ extension AreaViewController {
                         
                         // check requiredLine (Number of angle + 1) is less then current number of line or not
                         
-                        
                         if noOfLine == 1 {
                             angleNodes.append(endValue)
                             for i in angleNodes {
@@ -79,40 +78,62 @@ extension AreaViewController {
                 }
                 angles.removeLast()
                 if angles.isEmpty {
-                    changeBtnMode(isEnabled: false)
+                    if lines.isEmpty {
+                        changeBtnMode(isEnabled: false)
+                    }
+                }
+            } else {
+                undoLines()
+            }
+        }
+        else {
+            undoLines()
+        }
+    }
+    
+    func undoLines() {
+        if !lines.isEmpty {
+            let lastLine = lines.last
+            lines.removeLast()
+            if lines.isEmpty {
+                changeBtnMode(isEnabled: false)
+            }
+            sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                if let lastLine = lastLine {
+                    lastLine.removeFromParentNode()
                 }
             }
         }
         else {
-            if !lines.isEmpty {
-                let lastLine = lines.last
-                lines.removeLast()
-                if lines.isEmpty {
-                    changeBtnMode(isEnabled: false)
-                }
-                sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-                    if let lastLine = lastLine {
-                        lastLine.removeFromParentNode()
-                    }
-                }
-            }
-            else {
-                changeBtnMode(isEnabled: true)
-            }
+            changeBtnMode(isEnabled: true)
         }
     }
     
     @IBAction func clearBtnTap(_ sender: UIButton) {
         sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            
             for line in lines {
                 line.removeFromParentNode()
             }
             for textNode in angleTextodes {
                 textNode.removeFromParentNode()
             }
+            
+            for angle in angles {
+                
+                if let lines: [Line] = angle.lines, let angleText: TextNode = angle.angleText {
+                    for line in lines {
+                        line.removeFromParentNode()
+                    }
+                    angleText.removeFromParentNode()
+                }
+                
+            }
         }
         
         self.currentLine?.removeFromParentNode()
+        self.lines.removeAll()
+        self.angles.removeAll()
         changeBtnMode(isEnabled: false)
     }
     
@@ -216,8 +237,8 @@ extension AreaViewController {
     
     func changeBtnMode(isEnabled: Bool) {
         DispatchQueue.main.async {
-            self.clearBtn.isHighlighted = !isEnabled
-            self.clearBtn.isEnabled = isEnabled
+            //self.clearBtn.isHighlighted = !isEnabled
+            //self.clearBtn.isEnabled = isEnabled
             self.captureBtn.isHighlighted = !isEnabled
             self.captureBtn.isEnabled = isEnabled
             self.undoBtn.isHidden = !isEnabled

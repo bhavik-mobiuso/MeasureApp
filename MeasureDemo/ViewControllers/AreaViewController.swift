@@ -43,7 +43,8 @@ class AreaViewController: MeasureViewController {
     var angleMeasurement : Bool = false
     var noOfAngle: Int = 1
     var unit: DistanceUnit = .meter
-    
+    let userDefault = UserDefaults.standard
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class AreaViewController: MeasureViewController {
         addPointBtn.isEnabled = false
         changeBtnMode(isEnabled: false)
         setupCoachingOverlay()
+        settings()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -119,7 +121,21 @@ class AreaViewController: MeasureViewController {
         }
     }
     
-
+    func settings() {
+        let units = userDefault.value(forKey: userSettings.unit.rawValue)
+        let isAngleMeasurement = userDefault.value(forKey: userSettings.isAngleMeasurement.rawValue)
+        let noOfAngles = userDefault.value(forKey: userSettings.noOfAngle.rawValue)
+        
+        self.angleMeasurement = isAngleMeasurement as! Bool
+        self.noOfAngle = noOfAngles as! Int
+        let unitData: [DistanceUnit] = [.centimeter, .meter,.inch,.foot]
+        for unit in unitData {
+            if unit.unit == units as! String {
+                self.unit = unit
+             
+            }
+        }
+    }
     
 }
 extension ARSCNView {

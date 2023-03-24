@@ -74,6 +74,7 @@ final class Line {
         
         text = SCNText(string: "", extrusionDepth: 0.1)
         text.firstMaterial?.diffuse.contents = color
+        text.font = .boldSystemFont(ofSize: 4.0)
         text.alignmentMode  = CATextLayerAlignmentMode.center.rawValue
         text.truncationMode = CATextLayerTruncationMode.middle.rawValue
         text.firstMaterial?.isDoubleSided = true
@@ -96,22 +97,17 @@ final class Line {
         let vectorA = GLKVector3Make(startValue.x, startValue.y, startValue.z)
         let vectorB = GLKVector3Make(endValue.x, endValue.y, endValue.z)
         
+        
+        setFontSize(vectorA: vectorA, vectorB: vectorB, endValue: endValue)
+        
         text.string = distance(to: endValue)
         textNode.position = SCNVector3((startVector.x+endValue.x)/2.0, (startVector.y+endValue.y)/2.0, (startVector.z+endValue.z)/2.0)
-        
-        let distance = startVector.distance(from: endValue) * unit.fator
-        
-        if distance > 1.00 {
-            text.font = .systemFont(ofSize: 35)
-            lineNode = MeasuringLine(startingVector: vectorA, endingVector: vectorB, width: 0.004)
-            
+        lineNode = MeasuringLine(startingVector: vectorA, endingVector: vectorB, width: 0.002)
+
+        if let line = lineNode {
+            self.sceneView.scene.rootNode.addChildNode(line)
         }
-        else {
-            text.font = .systemFont(ofSize: 12)
-            lineNode = MeasuringLine(startingVector: vectorA, endingVector: vectorB, width: 0.002)
-            
-        }
-        self.sceneView.scene.rootNode.addChildNode(lineNode!)
+        
         endNode.position = endValue
         if endNode.parent == nil {
             sceneView?.scene.rootNode.addChildNode(endNode)
@@ -127,5 +123,50 @@ final class Line {
         lineNode?.removeFromParentNode()
         endNode.removeFromParentNode()
         textNode.removeFromParentNode()
+    }
+    
+    func setFontSize(vectorA: GLKVector3, vectorB: GLKVector3, endValue: SCNVector3) {
+        
+        var fontSize: CGFloat = 4.0
+        
+        let distance = startVector.distance(from: endValue) * unit.fator
+        print(distance)
+        
+        switch unit {
+            case .centimeter:
+                if distance > 50.0 && distance < 100.0{
+                        fontSize = 10.0
+                    }
+                else if distance > 100 {
+                    fontSize = 25.0
+                }
+            case .meter:
+                if distance > 0.40 && distance < 2.5{
+                        fontSize = 10.0
+                    }
+                else if distance > 2.5 {
+                    fontSize = 25.0
+                }
+                
+            case .inch:
+                if distance > 20.0 && distance < 50{
+                        fontSize = 12.0
+                    }
+                else if distance > 50 {
+                    fontSize = 25.0
+                }
+                
+            case .foot:
+            if distance > 1.0 && distance < 5.0 {
+                    fontSize = 12.0
+                }
+                else if distance > 4.0 {
+                    fontSize = 25.0
+                }
+            case .none:
+            fontSize = 4.0
+        }
+        text.font = .systemFont(ofSize: fontSize)
+
     }
 }
