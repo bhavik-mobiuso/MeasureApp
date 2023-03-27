@@ -123,7 +123,7 @@ class AreaViewController: MeasureViewController {
     
     func settings() {
         let units = userDefault.value(forKey: userSettings.unit.rawValue)
-        let isAngleMeasurement = userDefault.value(forKey: userSettings.isAngleMeasurement.rawValue)
+        guard let isAngleMeasurement = userDefault.value(forKey: userSettings.isAngleMeasurement.rawValue) else { return }
         let noOfAngles = userDefault.value(forKey: userSettings.noOfAngle.rawValue)
         
         self.angleMeasurement = isAngleMeasurement as! Bool

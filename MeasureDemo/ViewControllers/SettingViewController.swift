@@ -161,10 +161,12 @@ extension SettingViewController {
     }
     
     func initiateSettings() {
-        let units = userDefault.value(forKey: userSettings.unit.rawValue)
+        guard let units = userDefault.value(forKey: userSettings.unit.rawValue) else { return }
         let isAngleMeasurement = userDefault.value(forKey: userSettings.isAngleMeasurement.rawValue)
         
         let noOfAngles = userDefault.value(forKey: userSettings.noOfAngle.rawValue)
+        
+        
         
         for unit in unitPickerData {
             if unit.unit == units as! String {
