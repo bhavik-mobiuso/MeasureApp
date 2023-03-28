@@ -147,6 +147,7 @@
 				FF4341C729C9CC8300528266 /* SCNNodes */,
 				FF741DF329BF31A200D31A11 /* Extesions */,
 				FF5B9BCB29C2FDB100EEA28F /* FocusSquare */,
+				FF9973B729D31EB0000A0C8D /* Resources */,
 				FFB90A2629BC9FF900B90FA8 /* Storyboard */,
 				FFB90A2829BCA02B00B90FA8 /* SupportFiles */,
 				FFB90A2729BCA00500B90FA8 /* Views */,
@@ -220,6 +221,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		FF9973B729D31EB0000A0C8D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF29822829AE25D100D87057 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		FFB90A2529BC9FEF00B90FA8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,7 +242,6 @@
 				FF9E514329C1EF8000B77E52 /* ThresoldPanGesture.swift */,
 				FF5DE2CB29B219DE00AB5B34 /* ImageMeasureViewController.swift */,
 				FF5B9BCD29C31B5500EEA28F /* ViewController.swift */,
-				FF29822829AE25D100D87057 /* Assets.xcassets */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
