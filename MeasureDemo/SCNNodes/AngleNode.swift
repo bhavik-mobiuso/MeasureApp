@@ -10,6 +10,6 @@ import ARKit
 
 struct AngleNode {
     var lines: [Line]?
-    var angleText: TextNode?
+    var angleText: [TextNode]?
     var angleNodeValue: [SCNVector3]?
 }

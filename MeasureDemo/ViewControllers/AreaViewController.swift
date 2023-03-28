@@ -37,6 +37,11 @@ class AreaViewController: MeasureViewController {
     var requiredLine = 1
     var angleLines: [Line] = []
     var angleTextodes: [TextNode] = []
+    var firstAngleCalculated: Bool = false
+    var prevAngleMidNode: SCNVector3? = nil
+    var tmpAngleLines: [Line] = []
+    var tmpAngleNodes: [SCNVector3] = []
+    var tmpAngleTextNodes: [TextNode] = []
     
     //settings
     var settingVC = SettingViewController()
@@ -58,7 +63,6 @@ class AreaViewController: MeasureViewController {
         changeBtnMode(isEnabled: false)
         setupCoachingOverlay()
         settings()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

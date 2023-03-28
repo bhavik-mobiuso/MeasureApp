@@ -130,8 +130,6 @@ final class Line {
         var fontSize: CGFloat = 4.0
         
         let distance = startVector.distance(from: endValue) * unit.fator
-        print(distance)
-        
         switch unit {
             case .centimeter:
                 if distance > 50.0 && distance < 100.0{

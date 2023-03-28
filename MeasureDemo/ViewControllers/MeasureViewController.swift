@@ -32,6 +32,10 @@ class MeasureViewController: UIViewController {
         sceneView.run()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        checkCameraAccess()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         sceneView.pause()
         super.viewWillDisappear(animated)
@@ -70,3 +74,52 @@ extension CGPoint {
         return sqrt(x * x + y * y)
     }
 }
+extension MeasureViewController {
+    func checkCameraAccess() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .denied:
+            print("Denied, request permission from settings")
+            showAlert(title: "Unable to access the Camera", message: "To enable access, go to Settings > Privacy > Camera and turn on Camera access for this app.")
+        case .restricted:
+            print("Restricted, device owner must approve")
+        case .authorized:
+            print("Authorized, proceed")
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { success in
+                if success {
+                    print("Permission granted, proceed")
+                } else {
+                    print("Permission denied")
+                }
+            }
+        }
+    }
+
+    func showAlert(title:String, message:String) {
+            let alert = UIAlertController(title: title,
+                                          message: message,
+                                          preferredStyle: UIAlertController.Style.alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(okAction)
+            
+            let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: { _ in
+                // Take the user to Settings app to possibly change permission.
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            // Finished opening URL
+                        })
+                    } else {
+                        // Fallback on earlier versions
+                        UIApplication.shared.openURL(settingsUrl)
+                    }
+                }
+            })
+            alert.addAction(settingsAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+}
+

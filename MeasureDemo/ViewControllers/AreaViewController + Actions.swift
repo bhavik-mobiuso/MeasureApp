@@ -8,58 +8,114 @@
 import Foundation
 import UIKit
 import ARKit
-
+import Photos
 //MARK: Actions
 extension AreaViewController {
     
     @IBAction func addPoint(_ sender: UIButton) {
-            statusLabel.removeFromSuperview()
-        
-            if !isMeasuring {
-                isMeasuring = true
-            }
-            else {
-                if let line = currentLine {
-                    if angleMeasurement {
+                statusLabel.removeFromSuperview()
+            
+                if !isMeasuring {
+                    isMeasuring = true
+                }
+                else {
+                    if let line = currentLine {
                         
-                        // append line into angleLines array
-                        angleLines.append(line)
+                        // if angle measurement is enable.
                         
-                        // append angle vectors in angleNodes array
-                        angleNodes.append(startValue)
-                        
-                        // check requiredLine (Number of angle + 1) is less then current number of line or not
-                        
-                        if noOfLine == 1 {
-                            angleNodes.append(endValue)
-                            for i in angleNodes {
-                                print("\n",i)
+                        if angleMeasurement {
+                            
+                            // append line into angleLines array
+                            tmpAngleLines.append(line)
+                            
+                            // append previous mid node of angle into second angle start node for second angle measurement
+                            
+                            if let prevMidNode = prevAngleMidNode {
+                                tmpAngleNodes.append(prevMidNode)
                             }
+                            
+                            // append angle start vector in angleNodes array
+                            
+                            tmpAngleNodes.append(startValue)
+                            
+                            // check requiredLine  is less then current number of line or not
+                            
+                            if noOfLine < noOfAngle {
+                                
+                                // if no of angle line is 1 then return its endvalue to endnode of anglenodes
+                                if !firstAngleCalculated && noOfAngleLine == 1 {
+                                    
+                                    // append lastnode of angleNode in angleNodes
+                                    
+                                    angleOperation(removeNodes: false, isfirstAngleCalculated: true)
+                                    
+                                    prevAngleMidNode = tmpAngleNodes[1]
+                                    tmpAngleNodes.removeAll()
+                                    tmpAngleLines.removeAll()
+                                    noOfLine = noOfLine + 1
+                                    noOfAngleLine = 0
+                                    
+                                }
+                                else if firstAngleCalculated && noOfAngleLine == 0 {
+                                    
+                                    angleOperation(removeNodes: true, isfirstAngleCalculated: false)
+                                    
+                                    noOfLine = noOfLine + 1
+                                    noOfAngleLine = noOfAngleLine + 1
+                                    if noOfLine > noOfAngle {
+                                        isMeasuring = false
+                                        startValue = SCNVector3()
+                                        currentLine = nil
+                                    }
+                                }
+                                else {
+                                   
+                                    noOfLine = noOfLine + 1
+                                    noOfAngleLine = noOfAngleLine + 1
+                                    changeBtnMode(isEnabled: true)
+                                    startValue = SCNVector3()
+                                }
+                            }
+                            else {
+                                
+                                angleOperation(removeNodes: true, isfirstAngleCalculated: false)
+                                angles.append(AngleNode(lines: angleLines,angleText: angleTextodes,angleNodeValue: angleNodes))
+                                angleNodes.removeAll()
+                                angleLines.removeAll()
+                                angleTextodes.removeAll()
+                                prevAngleMidNode = nil
+                                noOfLine = 0
+                                noOfAngleLine = 0
+                                currentLine = nil
+                                isMeasuring = false
+                            }
+                            
                         }
-                        noOfLine = noOfLine + 1
-                    }
-                    else {
-                        lines.append(line)
+                        
+                        // If angle measurement = false
+                        
+                        else {
+                            lines.append(line)
+                            isMeasuring = false
+                            changeBtnMode(isEnabled: true)
+                            startValue = SCNVector3()
+                        }
                     }
                     currentLine = nil
                 }
-                
-                changeBtnMode(isEnabled: true)
-                startValue = SCNVector3()
-                
-                if angleMeasurement {
-                    if noOfLine > 1 {
-                        createAngleDistace()
-                        
-                    }else {
-                        isMeasuring = true
-                    }
-                }
-                else {
-                    isMeasuring = false
-                }
+        }
+    
+    func angleOperation(removeNodes: Bool, isfirstAngleCalculated: Bool) {
+            tmpAngleNodes.append(endValue)
+            createAngleDistace()
+            startValue = SCNVector3()
+            firstAngleCalculated = isfirstAngleCalculated
+            if removeNodes {
+                tmpAngleNodes.removeAll()
+                tmpAngleLines.removeAll()
             }
-    }
+            
+        }
     
     @IBAction func undoBtnTap(_ sender: UIButton){
         
@@ -94,13 +150,15 @@ extension AreaViewController {
             changeBtnMode(isEnabled: true)
             if let lastAngle: AngleNode = angles.last,
                let lines: [Line] = lastAngle.lines,
-               let angleText: TextNode = lastAngle.angleText {
+               let angleTexts: [TextNode] = lastAngle.angleText {
                 
                     for line in lines {
                         line.removeFromParentNode()
                     }
-                    angleText.removeFromParentNode()
-            }
+                    for texts in angleTexts {
+                        texts.removeFromParentNode()
+                    }
+                }
             angles.removeLast()
             if angles.isEmpty && lines.isEmpty{
                 changeBtnMode(isEnabled: false)
@@ -122,11 +180,13 @@ extension AreaViewController {
             
             for angle in angles {
                 
-                if let lines: [Line] = angle.lines, let angleText: TextNode = angle.angleText {
+                if let lines: [Line] = angle.lines, let angleTexts: [TextNode] = angle.angleText {
                     for line in lines {
                         line.removeFromParentNode()
                     }
-                    angleText.removeFromParentNode()
+                    for texts in angleTexts {
+                        texts.removeFromParentNode()
+                    }
                 }
                 
             }
@@ -141,13 +201,20 @@ extension AreaViewController {
     @IBAction func capturePhotoBtnTap(_ sender: UIButton) {
         
         print("CapturePhotoBtnTap")
-        if lines.count > 0 {
-            let renderedImg = self.sceneView.snapshot()
-            UIImageWriteToSavedPhotosAlbum(renderedImg, nil, nil, nil)
+        
+        if lines.count > 0 || angles.count > 0 {
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                self.showToast(message: "Photo saved to cameraroll")
-            })
+            if PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized {
+                let renderedImg = self.sceneView.snapshot()
+                UIImageWriteToSavedPhotosAlbum(renderedImg, nil, nil, nil)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.showToast(message: "Photo saved to cameraroll")
+                })
+            }
+            else {
+                accessPhotos()
+            }
         }
     }
     
@@ -277,9 +344,9 @@ extension AreaViewController {
     }
     
     func createAngleDistace() {
-        let startNode = angleNodes[0]
-        let midNode = angleNodes[1]
-        let endNode = angleNodes[2]
+        let startNode = tmpAngleNodes[0]
+        let midNode = tmpAngleNodes[1]
+        let endNode = tmpAngleNodes[2]
         
         let angleDistance = angleFromVectors(start: startNode, mid: midNode, end: endNode)
         print(angleDistance)
@@ -287,12 +354,13 @@ extension AreaViewController {
         
         addAngleMeasurement(position: midNode, angle: formattedAngle)
         
-        angles.append(AngleNode(lines: angleLines,angleText: angleTextodes.last,angleNodeValue: angleNodes))
+        for tmpAngleNode in tmpAngleNodes  {
+            angleNodes.append(tmpAngleNode)
+        }
         
-        isMeasuring = false
-        angleNodes.removeAll()
-        angleLines.removeAll()
-        noOfLine = 0
+        for tmpAngleLine in tmpAngleLines {
+            angleLines.append(tmpAngleLine)
+        }
     }
     
     func addAngleMeasurement(position: SCNVector3, angle: String) {
@@ -303,4 +371,52 @@ extension AreaViewController {
         sceneView.scene.rootNode.addChildNode(angleText)
         
     }
+    
+    func photoAccessCheck(){
+        switch PHPhotoLibrary.authorizationStatus(for: .addOnly) {
+            case .authorized:
+                    print("Authorized")
+                        
+                    
+                
+            case .restricted:
+                    print("Restricted")
+            case .denied:
+                    print("Denied")
+                    accessPhotos()
+            case .notDetermined:
+                    break
+            default :
+                return
+        }
+    }
+    func accessPhotos() {
+        let alert = UIAlertController(title: "Allow access to your photos",
+                                          message: "This lets you share from your camera roll and enables other features for photos and videos. Go to your settings and tap \"Photos\".",
+                                          preferredStyle: .alert)
+            
+            let notNowAction = UIAlertAction(title: "Not Now",
+                                             style: .cancel,
+                                             handler: nil)
+            alert.addAction(notNowAction)
+            
+            let openSettingsAction = UIAlertAction(title: "Open Settings",
+                                                   style: .default) { [unowned self] (_) in
+                // Open app privacy settings
+                gotoAppPrivacySettings()
+            }
+            alert.addAction(openSettingsAction)
+            
+            present(alert, animated: true, completion: nil)
+    }
+    func gotoAppPrivacySettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString),
+            UIApplication.shared.canOpenURL(url) else {
+                assertionFailure("Not able to open App privacy settings")
+                return
+        }
+
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
 }
