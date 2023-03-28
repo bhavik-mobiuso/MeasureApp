@@ -64,27 +64,7 @@ extension AreaViewController {
     @IBAction func undoBtnTap(_ sender: UIButton){
         
         if angleMeasurement {
-            
-            if !angles.isEmpty {
-                changeBtnMode(isEnabled: true)
-                if let lastAngle: AngleNode = angles.last,
-                   let lines: [Line] = lastAngle.lines,
-                   let angleText: TextNode = lastAngle.angleText {
-                    
-                        for line in lines {
-                            line.removeFromParentNode()
-                        }
-                        angleText.removeFromParentNode()
-                }
-                angles.removeLast()
-                if angles.isEmpty {
-                    if lines.isEmpty {
-                        changeBtnMode(isEnabled: false)
-                    }
-                }
-            } else {
-                undoLines()
-            }
+            undoAngles()
         }
         else {
             undoLines()
@@ -95,7 +75,7 @@ extension AreaViewController {
         if !lines.isEmpty {
             let lastLine = lines.last
             lines.removeLast()
-            if lines.isEmpty {
+            if lines.isEmpty && angles.isEmpty{
                 changeBtnMode(isEnabled: false)
             }
             sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
@@ -105,7 +85,28 @@ extension AreaViewController {
             }
         }
         else {
+            undoAngles()
+        }
+    }
+    
+    func undoAngles() {
+        if !angles.isEmpty {
             changeBtnMode(isEnabled: true)
+            if let lastAngle: AngleNode = angles.last,
+               let lines: [Line] = lastAngle.lines,
+               let angleText: TextNode = lastAngle.angleText {
+                
+                    for line in lines {
+                        line.removeFromParentNode()
+                    }
+                    angleText.removeFromParentNode()
+            }
+            angles.removeLast()
+            if angles.isEmpty && lines.isEmpty{
+                changeBtnMode(isEnabled: false)
+            }
+        } else {
+            undoLines()
         }
     }
     
