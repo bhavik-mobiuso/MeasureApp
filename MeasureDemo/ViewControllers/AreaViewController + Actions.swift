@@ -204,17 +204,12 @@ extension AreaViewController {
         
         if lines.count > 0 || angles.count > 0 {
             
-            if PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized {
-                let renderedImg = self.sceneView.snapshot()
-                UIImageWriteToSavedPhotosAlbum(renderedImg, nil, nil, nil)
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    self.showToast(message: "Photo saved to cameraroll")
-                })
-            }
-            else {
-                accessPhotos()
-            }
+            let renderedImg = self.sceneView.snapshot()
+            UIImageWriteToSavedPhotosAlbum(renderedImg, nil, nil, nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.showToast(message: "Photo saved to cameraroll")
+            })
         }
     }
     
