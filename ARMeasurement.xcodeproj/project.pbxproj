@@ -17,9 +17,9 @@
 		FF29822229AE25CF00D87057 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29822129AE25CF00D87057 /* SceneDelegate.swift */; };
 		FF29822929AE25D100D87057 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF29822829AE25D100D87057 /* Assets.xcassets */; };
 		FF29822C29AE25D100D87057 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF29822A29AE25D100D87057 /* LaunchScreen.storyboard */; };
-		FF29823729AE25D100D87057 /* MeasureDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29823629AE25D100D87057 /* MeasureDemoTests.swift */; };
-		FF29824129AE25D100D87057 /* MeasureDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29824029AE25D100D87057 /* MeasureDemoUITests.swift */; };
-		FF29824329AE25D100D87057 /* MeasureDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29824229AE25D100D87057 /* MeasureDemoUITestsLaunchTests.swift */; };
+		FF29823729AE25D100D87057 /* ARMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29823629AE25D100D87057 /* ARMeasurement.swift */; };
+		FF29824129AE25D100D87057 /* ARMeasurementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29824029AE25D100D87057 /* ARMeasurementUITests.swift */; };
+		FF29824329AE25D100D87057 /* ARMeasurementUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29824229AE25D100D87057 /* ARMeasurementUITestsLaunchTests.swift */; };
 		FF4606CE29BB38F100999867 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4606CD29BB38F100999867 /* Plane.swift */; };
 		FF5B9BC429C2DB5200EEA28F /* VirtualObjectLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5B9BC329C2DB5200EEA28F /* VirtualObjectLoader.swift */; };
 		FF5B9BC629C2DB5B00EEA28F /* VirtualObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5B9BC529C2DB5B00EEA28F /* VirtualObject.swift */; };
@@ -64,17 +64,17 @@
 		FF26B98729AF1ECE005A758E /* MeasureSCNView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureSCNView.swift; sourceTree = "<group>"; };
 		FF26B98B29AF1EEF005A758E /* MeasureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureViewController.swift; sourceTree = "<group>"; };
 		FF26B99529AF32A1005A758E /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
-		FF29821C29AE25CF00D87057 /* MeasureDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeasureDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF29821C29AE25CF00D87057 /* ARMeasurement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARMeasurement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF29821F29AE25CF00D87057 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF29822129AE25CF00D87057 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FF29822829AE25D100D87057 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF29822B29AE25D100D87057 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF29822D29AE25D100D87057 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF29823229AE25D100D87057 /* MeasureDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeasureDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF29823629AE25D100D87057 /* MeasureDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureDemoTests.swift; sourceTree = "<group>"; };
-		FF29823C29AE25D100D87057 /* MeasureDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeasureDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF29824029AE25D100D87057 /* MeasureDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureDemoUITests.swift; sourceTree = "<group>"; };
-		FF29824229AE25D100D87057 /* MeasureDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FF29823229AE25D100D87057 /* ARMeasurementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARMeasurementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF29823629AE25D100D87057 /* ARMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMeasurement.swift; sourceTree = "<group>"; };
+		FF29823C29AE25D100D87057 /* ARMeasurementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARMeasurementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF29824029AE25D100D87057 /* ARMeasurementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMeasurementUITests.swift; sourceTree = "<group>"; };
+		FF29824229AE25D100D87057 /* ARMeasurementUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARMeasurementUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FF4606CD29BB38F100999867 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		FF5B9BC329C2DB5200EEA28F /* VirtualObjectLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObjectLoader.swift; sourceTree = "<group>"; };
 		FF5B9BC529C2DB5B00EEA28F /* VirtualObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualObject.swift; sourceTree = "<group>"; };
@@ -123,9 +123,9 @@
 		FF29821329AE25CF00D87057 = {
 			isa = PBXGroup;
 			children = (
-				FF29821E29AE25CF00D87057 /* MeasureDemo */,
-				FF29823529AE25D100D87057 /* MeasureDemoTests */,
-				FF29823F29AE25D100D87057 /* MeasureDemoUITests */,
+				FF29821E29AE25CF00D87057 /* ARMeasurement */,
+				FF29823529AE25D100D87057 /* ARMeasurementDemoTests */,
+				FF29823F29AE25D100D87057 /* ARMeasurementUITests */,
 				FF29821D29AE25CF00D87057 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -133,21 +133,20 @@
 		FF29821D29AE25CF00D87057 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF29821C29AE25CF00D87057 /* MeasureDemo.app */,
-				FF29823229AE25D100D87057 /* MeasureDemoTests.xctest */,
-				FF29823C29AE25D100D87057 /* MeasureDemoUITests.xctest */,
+				FF29821C29AE25CF00D87057 /* ARMeasurement.app */,
+				FF29823229AE25D100D87057 /* ARMeasurementTests.xctest */,
+				FF29823C29AE25D100D87057 /* ARMeasurementUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FF29821E29AE25CF00D87057 /* MeasureDemo */ = {
+		FF29821E29AE25CF00D87057 /* ARMeasurement */ = {
 			isa = PBXGroup;
 			children = (
 				FF8CFBCD29CAC8FA00ED4A3A /* Helper */,
 				FF4341C729C9CC8300528266 /* SCNNodes */,
 				FF741DF329BF31A200D31A11 /* Extesions */,
 				FF5B9BCB29C2FDB100EEA28F /* FocusSquare */,
-				FF9973B729D31EB0000A0C8D /* Resources */,
 				FFB90A2629BC9FF900B90FA8 /* Storyboard */,
 				FFB90A2829BCA02B00B90FA8 /* SupportFiles */,
 				FFB90A2729BCA00500B90FA8 /* Views */,
@@ -155,24 +154,24 @@
 				FFB90A2529BC9FEF00B90FA8 /* ViewControllers */,
 				FF29822D29AE25D100D87057 /* Info.plist */,
 			);
-			path = MeasureDemo;
+			path = ARMeasurement;
 			sourceTree = "<group>";
 		};
-		FF29823529AE25D100D87057 /* MeasureDemoTests */ = {
+		FF29823529AE25D100D87057 /* ARMeasurementDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				FF29823629AE25D100D87057 /* MeasureDemoTests.swift */,
+				FF29823629AE25D100D87057 /* ARMeasurement.swift */,
 			);
-			path = MeasureDemoTests;
+			path = ARMeasurementDemoTests;
 			sourceTree = "<group>";
 		};
-		FF29823F29AE25D100D87057 /* MeasureDemoUITests */ = {
+		FF29823F29AE25D100D87057 /* ARMeasurementUITests */ = {
 			isa = PBXGroup;
 			children = (
-				FF29824029AE25D100D87057 /* MeasureDemoUITests.swift */,
-				FF29824229AE25D100D87057 /* MeasureDemoUITestsLaunchTests.swift */,
+				FF29824029AE25D100D87057 /* ARMeasurementUITests.swift */,
+				FF29824229AE25D100D87057 /* ARMeasurementUITestsLaunchTests.swift */,
 			);
-			path = MeasureDemoUITests;
+			path = ARMeasurementUITests;
 			sourceTree = "<group>";
 		};
 		FF4341C729C9CC8300528266 /* SCNNodes */ = {
@@ -221,14 +220,6 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		FF9973B729D31EB0000A0C8D /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FF29822829AE25D100D87057 /* Assets.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		FFB90A2529BC9FEF00B90FA8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +233,7 @@
 				FF9E514329C1EF8000B77E52 /* ThresoldPanGesture.swift */,
 				FF5DE2CB29B219DE00AB5B34 /* ImageMeasureViewController.swift */,
 				FF5B9BCD29C31B5500EEA28F /* ViewController.swift */,
+				FF29822829AE25D100D87057 /* Assets.xcassets */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -276,9 +268,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF29821B29AE25CF00D87057 /* MeasureDemo */ = {
+		FF29821B29AE25CF00D87057 /* ARMeasurement */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF29824629AE25D100D87057 /* Build configuration list for PBXNativeTarget "MeasureDemo" */;
+			buildConfigurationList = FF29824629AE25D100D87057 /* Build configuration list for PBXNativeTarget "ARMeasurement" */;
 			buildPhases = (
 				FF29821829AE25CF00D87057 /* Sources */,
 				FF29821929AE25CF00D87057 /* Frameworks */,
@@ -288,14 +280,14 @@
 			);
 			dependencies = (
 			);
-			name = MeasureDemo;
+			name = ARMeasurement;
 			productName = MeasureDemo;
-			productReference = FF29821C29AE25CF00D87057 /* MeasureDemo.app */;
+			productReference = FF29821C29AE25CF00D87057 /* ARMeasurement.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FF29823129AE25D100D87057 /* MeasureDemoTests */ = {
+		FF29823129AE25D100D87057 /* ARMeasurementTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF29824929AE25D100D87057 /* Build configuration list for PBXNativeTarget "MeasureDemoTests" */;
+			buildConfigurationList = FF29824929AE25D100D87057 /* Build configuration list for PBXNativeTarget "ARMeasurementTests" */;
 			buildPhases = (
 				FF29822E29AE25D100D87057 /* Sources */,
 				FF29822F29AE25D100D87057 /* Frameworks */,
@@ -306,14 +298,14 @@
 			dependencies = (
 				FF29823429AE25D100D87057 /* PBXTargetDependency */,
 			);
-			name = MeasureDemoTests;
+			name = ARMeasurementTests;
 			productName = MeasureDemoTests;
-			productReference = FF29823229AE25D100D87057 /* MeasureDemoTests.xctest */;
+			productReference = FF29823229AE25D100D87057 /* ARMeasurementTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FF29823B29AE25D100D87057 /* MeasureDemoUITests */ = {
+		FF29823B29AE25D100D87057 /* ARMeasurementUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF29824C29AE25D100D87057 /* Build configuration list for PBXNativeTarget "MeasureDemoUITests" */;
+			buildConfigurationList = FF29824C29AE25D100D87057 /* Build configuration list for PBXNativeTarget "ARMeasurementUITests" */;
 			buildPhases = (
 				FF29823829AE25D100D87057 /* Sources */,
 				FF29823929AE25D100D87057 /* Frameworks */,
@@ -324,9 +316,9 @@
 			dependencies = (
 				FF29823E29AE25D100D87057 /* PBXTargetDependency */,
 			);
-			name = MeasureDemoUITests;
+			name = ARMeasurementUITests;
 			productName = MeasureDemoUITests;
-			productReference = FF29823C29AE25D100D87057 /* MeasureDemoUITests.xctest */;
+			productReference = FF29823C29AE25D100D87057 /* ARMeasurementUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -352,7 +344,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FF29821729AE25CF00D87057 /* Build configuration list for PBXProject "MeasureDemo" */;
+			buildConfigurationList = FF29821729AE25CF00D87057 /* Build configuration list for PBXProject "ARMeasurement" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -365,9 +357,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF29821B29AE25CF00D87057 /* MeasureDemo */,
-				FF29823129AE25D100D87057 /* MeasureDemoTests */,
-				FF29823B29AE25D100D87057 /* MeasureDemoUITests */,
+				FF29821B29AE25CF00D87057 /* ARMeasurement */,
+				FF29823129AE25D100D87057 /* ARMeasurementTests */,
+				FF29823B29AE25D100D87057 /* ARMeasurementUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -436,7 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF29823729AE25D100D87057 /* MeasureDemoTests.swift in Sources */,
+				FF29823729AE25D100D87057 /* ARMeasurement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,8 +436,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF29824329AE25D100D87057 /* MeasureDemoUITestsLaunchTests.swift in Sources */,
-				FF29824129AE25D100D87057 /* MeasureDemoUITests.swift in Sources */,
+				FF29824329AE25D100D87057 /* ARMeasurementUITestsLaunchTests.swift in Sources */,
+				FF29824129AE25D100D87057 /* ARMeasurementUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,12 +446,12 @@
 /* Begin PBXTargetDependency section */
 		FF29823429AE25D100D87057 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FF29821B29AE25CF00D87057 /* MeasureDemo */;
+			target = FF29821B29AE25CF00D87057 /* ARMeasurement */;
 			targetProxy = FF29823329AE25D100D87057 /* PBXContainerItemProxy */;
 		};
 		FF29823E29AE25D100D87057 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FF29821B29AE25CF00D87057 /* MeasureDemo */;
+			target = FF29821B29AE25CF00D87057 /* ARMeasurement */;
 			targetProxy = FF29823D29AE25D100D87057 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -599,7 +591,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54978M7XA8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MeasureDemo/Info.plist;
+				INFOPLIST_FILE = ARMeasurement/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "App wants to access your access camera for measurement";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access your photos to save images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -630,7 +622,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54978M7XA8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MeasureDemo/Info.plist;
+				INFOPLIST_FILE = ARMeasurement/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "App wants to access your access camera for measurement";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access your photos to save images";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -668,7 +660,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeasureDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeasureDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARMeasurement.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ARMeasurement";
 			};
 			name = Debug;
 		};
@@ -688,7 +680,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeasureDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MeasureDemo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARMeasurement.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ARMeasurement";
 			};
 			name = Release;
 		};
@@ -731,7 +723,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FF29821729AE25CF00D87057 /* Build configuration list for PBXProject "MeasureDemo" */ = {
+		FF29821729AE25CF00D87057 /* Build configuration list for PBXProject "ARMeasurement" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF29824429AE25D100D87057 /* Debug */,
@@ -740,7 +732,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF29824629AE25D100D87057 /* Build configuration list for PBXNativeTarget "MeasureDemo" */ = {
+		FF29824629AE25D100D87057 /* Build configuration list for PBXNativeTarget "ARMeasurement" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF29824729AE25D100D87057 /* Debug */,
@@ -749,7 +741,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF29824929AE25D100D87057 /* Build configuration list for PBXNativeTarget "MeasureDemoTests" */ = {
+		FF29824929AE25D100D87057 /* Build configuration list for PBXNativeTarget "ARMeasurementTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF29824A29AE25D100D87057 /* Debug */,
@@ -758,7 +750,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF29824C29AE25D100D87057 /* Build configuration list for PBXNativeTarget "MeasureDemoUITests" */ = {
+		FF29824C29AE25D100D87057 /* Build configuration list for PBXNativeTarget "ARMeasurementUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF29824D29AE25D100D87057 /* Debug */,
